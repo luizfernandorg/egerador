@@ -22,11 +22,11 @@ def chk_jogo(request):
     array.append(int(request.GET['dez6']))
     array = sorted(array)
     
-    # pegar todos os sorteios da tabela
+    # get all the drawn numbers
     sorteios = Megasena.objects.all()
     
     iguais = 0
-    # comprar sorteio por sorteiro com o valor informado do array
+    # compare prize draw by prize draw with numbers guessed
     for sorteio in sorteios:
         if array[0] == int(sorteio.dezena_1):
             iguais += 1
@@ -41,7 +41,7 @@ def chk_jogo(request):
         if array[5] == int(sorteio.dezena_6):
             iguais += 1
         
-        # se houver sorteio igual data.response = True ou False
+        # if the prize draw is equal to data.response = True ou False
         if iguais == 6:
             data['response'] = True
             break
